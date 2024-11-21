@@ -12,6 +12,6 @@ jobs:
     steps:
       - name: Greet the user
         run: |
-        echo "Hello world from ${{ github.
-
+          echo "Hello world from ${{ github.actor }}"
+          echo "Current branch '${{ github.ref}}'."
         shell: bash
