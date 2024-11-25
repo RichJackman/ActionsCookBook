@@ -20,3 +20,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - run: tree
+  Test:
+    runs-on: ubuntu-latest
+    environment: Test
+    needs: first_job
+    steps:
+      - run: |
+          echo "Hello ${{vars.WHO_TO_GREET}} 👋 from ${{github.actor}}."
+          sec=$(echo ${{ secrets.MY_SECRET }} | sed 's/./& /g')
+          echo "My secret is 🤫 '$sec'."
+  Load-Test:
+    runs-on: ubuntu-latest
+    environment: Load-Test
+    needs: first_job
+    steps:
+    - run: |
+        echo "Hello ${{ vars.WHO_TO_GREET }} 👋 from ${{ github.actor }}." 
+        sec=$(echo ${{ secrets.MY_SECRET }} | sed 's/./& /g')
+        echo "My secret is 🤫 '$sec'."
+        sleep 15
